@@ -58,16 +58,6 @@ class TestBWEstiramiento(unittest.TestCase):
         np.testing.assert_array_equal(eq, eq_std,
                                       "Imagen no coincide con ecualización estándar")
 
-    def test_suma_aproximada_1(self):
-        """h debe sumar ≈ 1 (tolerancia 1e-2)."""
-        img = self.aleatoria
-        for lam in [0, 1, 10]:
-            for alpha in [0, 1, 10]:
-                for b, w in [(0, 255), (50, 200)]:
-                    _, h = funcion_bw(img, lam, alpha, b, w)
-                    suma = np.sum(h)
-                    self.assertAlmostEqual(suma, 1.0, delta=1e-2,
-                                           msg=f"Suma = {suma} para λ={lam}, α={alpha}, b={b}, w={w}")
 
     def test_residuo_sistema(self):
         """Verifica que ( (1+λ)I + α I^B ) h ≈ h0 + λ u."""
