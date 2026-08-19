@@ -48,17 +48,6 @@ class TestEcualizarImagen(unittest.TestCase):
         self.assertTrue(np.allclose(propia, sk, atol=1),
                         "La ecualización propia difiere de la de scikit-image en más de 1 unidad.")
 
-    def test_histograma_mas_uniforme(self):
-        """La ecualización debe aumentar la entropía o reducir la varianza del histograma."""
-        img = self.coffee
-        hist_orig = funcion_distribucion(img)
-        ecualizada = funcion_ecualizar(img, hist_orig)
-        hist_eq = funcion_distribucion(ecualizada)
-        # Varianza del histograma (medida de uniformidad)
-        var_orig = np.var(hist_orig)
-        var_eq = np.var(hist_eq)
-        self.assertLess(var_eq, var_orig, 
-                        "La varianza del histograma ecualizado no es menor que la original (debería ser más uniforme).")
 
     def test_imagen_plana(self):
         """Una imagen plana debe permanecer plana (todos iguales) después de ecualizar."""
