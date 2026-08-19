@@ -128,7 +128,7 @@ def evaluar(funcion_alumno):
     sys.argv = ['']
     
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestCalcularProbabilidadAcumulada)
-    runner = unittest.TextTestRunner(verbosity=2)
+    runner = unittest.TextTestRunner(verbosity=0)
     resultado = runner.run(suite)
 
     print("\n" + "="*70)
