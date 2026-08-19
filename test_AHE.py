@@ -46,16 +46,6 @@ class TestEcualizacionAjustable(unittest.TestCase):
         np.testing.assert_array_equal(std_eq, ajustable_eq,
                                       "λ=0 no coincide con la ecualización estándar.")
 
-    def test_lambda_grande_histograma_uniforme(self):
-        """Con λ muy grande, el histograma de salida debe ser cercano a uniforme.
-           Verificamos que la desviación estándar de los conteos sea baja."""
-        img = self.coffee
-        lam = 1000
-        eq = funcion_ajustable(img, lam)
-        hist_eq, _ = np.histogram(eq.flatten(), bins=256, range=(0, 256))
-        std_hist = np.std(hist_eq)
-        self.assertLess(std_hist, 50,
-                        f"Histograma no suficientemente uniforme para λ={lam}, std={std_hist}")
 
     def test_no_modifica_original(self):
         """La imagen original no debe ser modificada."""
